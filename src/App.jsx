@@ -19,7 +19,7 @@ const App = () => {
 
    useEffect(()=>{
       const user = localStorage.getItem("user");
-      if(!user && pathname !== "/login" && pathname !== "/register"){
+      if(!user){
           navigate("/register")
       }
    },[])

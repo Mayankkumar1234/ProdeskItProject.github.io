@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 
 import { ProductContext } from "../utils/Context";
-import { Link } from "react-router-dom";
+import { Link  , useNavigate} from "react-router-dom";
 
 let Nav = () => {
     const [products] = useContext(ProductContext);
+    const navigate = useNavigate();
 
     let distinct_category =
         products && products.reduce((acc, cv) => [...acc, cv.category], []);
@@ -43,7 +44,7 @@ let Nav = () => {
                 <button  className="bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600 hover:shadow-lg transition duration-300 ease-in-out"
  onClick={()=> {
                     localStorage.removeItem("user");
-                    window.location.href = "/login";
+                    navigate("/login");
                 }} >Logout</button>
             </div>
         </nav>
