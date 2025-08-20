@@ -17,29 +17,25 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
-    toast("Login successfully")
-    navigate('/home');
+    
 
     if(!email || !password){
       toast.warn("All fields are required");
       return;
     }
+    let user = JSON.parse(localStorage.getItem("user"));
+    console.log(user)
 
-    // Store data in localStorage
-    const userData = {
-      email,
-      password,
-    };
-    localStorage.setItem("user", JSON.stringify(userData));
-
-    toast.success("Login successfully");
-
-    // navigate to home page
-    navigate("/home");
+    if(user && user.email === email && user.password === password){
+      toast.success("Login successfully");
+      navigate("/");
+    }else{
+      toast.error("Invalid email or password");
+      return;
+    }
   }
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-300 to-indigo-600">
+    <div className="flex items-center w-screen absolute z-10 justify-center min-h-screen bg-gradient-to-r from-blue-300 to-indigo-600">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-md p-8">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Login

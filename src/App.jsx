@@ -8,11 +8,13 @@ import Edit from './Components/Edit';
 import { FaArrowLeft } from "react-icons/fa";
 import Register from './Components/Register';
 import Login from './Components/Login';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const App = () => {
   const { search, pathname} = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className='h-screen w-screen flex '>
@@ -21,15 +23,16 @@ const App = () => {
 
 
       {(pathname != "/" || search.length > 0) && (
-      <Link to="/" className="text-blue-300 absolute left-[45%] border-zinc-900 border rounded font-medium text-2xl py-1 px-4 mt-[2%]">
+      <button onClick={()=>navigate("/")
+      } className="text-blue-300 absolute left-[45%] border-zinc-900 border rounded font-medium text-2xl py-1 px-4 mt-[2%]">
      <FaArrowLeft />
-      </Link>
+      </button>
     
       )}
        
       <Routes>
-        {/* <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />  */}
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<Create/>} />
         <Route path="/details/:id" element={<Details/>} />

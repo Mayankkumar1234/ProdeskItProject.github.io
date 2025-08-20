@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import Nav from "./Nav";
 import { Link, useLocation } from "react-router-dom";
@@ -18,9 +19,6 @@ const Home = () => {
             console.log(error);
         }
     };
-  
-    console.log(category)
-
     useEffect(() => {
         if (!filteredProducts || category == undefined)
             setfilteredProducts(products);
@@ -28,6 +26,7 @@ const Home = () => {
             getproductscategory();
             setfilteredProducts(products.filter((p) => p.category == category));
         }
+        else setfilteredProducts(products);
     }, [category, products]);
 
     return products ? (
