@@ -1,5 +1,5 @@
 import PrivateRoute from './PrivateRoute/Private';
-import React from 'react'
+import React, { useEffect } from 'react'
 import Home from './Components/Home';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import Details from './Components/Details';
@@ -16,11 +16,21 @@ const App = () => {
   const { search, pathname} = useLocation();
   const navigate = useNavigate();
 
+
+   useEffect(()=>{
+      const user = localStorage.getItem("user");
+      if(!user && pathname !== "/login" && pathname !== "/register"){
+          navigate("/register")
+      }
+   },[])
+
   return (
     <div className='h-screen w-screen flex '>
 {/*  This will only display when user search anything */}
 
 
+
+  
 
       {(pathname != "/" || search.length > 0) && (
       <button onClick={()=>navigate("/")
